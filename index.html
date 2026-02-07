@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차승희 | 서울 동대문구</title>
+    
+    <style>
+        /* ===========================
+           기본 설정 (Reset & Base)
+        =========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            /* 부드러운 스크롤 적용 */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* ===========================
+           Header (상단 프로필 영역)
+        =========================== */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* 원형 */
+            background-color: white;
+            margin: 0 auto 20px;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* 이미지가 원형 밖으로 나가지 않도록 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 비율 유지하며 채우기 */
+            display: block;
+        }
+
+        .candidate-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .candidate-region {
+            font-size: 18px;
+            margin-bottom: 16px;
+            opacity: 0.95;
+        }
+
+        .candidate-slogan {
+            font-size: 16px;
+            font-weight: 300;
+            opacity: 0.9;
+            line-height: 1.5;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* ===========================
+           Navigation (상단 네비게이션)
+        =========================== */
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            padding: 16px 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-btn:hover,
+        .nav-btn:active {
+            background-color: #f0f9ff;
+            border-bottom-color: #2563eb;
+        }
+
+        /* ===========================
+           섹션 공통 스타일
+        =========================== */
+        .section {
+            background-color: white;
+            margin: 16px;
+            padding: 32px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 24px;
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #dbeafe;
+        }
+
+        /* ===========================
+           섹션 ① 공약
+        =========================== */
+        .promise-item {
+            margin-bottom: 24px;
+            padding: 20px;
+            background-color: #f0f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .promise-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .promise-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+        }
+
+        .promise-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ===========================
+           섹션 ② 이력
+        =========================== */
+        .profile-statement {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            padding: 16px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .profile-statement p {
+            margin-bottom: 12px;
+        }
+
+        .profile-statement p:last-child {
+            margin-bottom: 0;
+        }
+
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .keyword-tag {
+            background-color: #dbeafe;
+            color: #1e3a8a;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ===========================
+           섹션 ③ 언론·활동
+        =========================== */
+        .media-item {
+            margin-bottom: 16px;
+            padding: 16px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #2563eb;
+        }
+
+        .media-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .media-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* ===========================
+           섹션 ④ SNS
+        =========================== */
+        .sns-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sns-link {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background-color: #f0f9ff;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .sns-link:hover {
+            background-color: #dbeafe;
+            border-color: #2563eb;
+            transform: translateX(4px);
+        }
+
+        .sns-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            width: 32px;
+            text-align: center;
+        }
+
+        /* ===========================
+           Footer (하단)
+        =========================== */
+        .footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 32px 20px;
+            margin-top: 32px;
+        }
+
+        .footer-message {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background-color: white;
+            margin: 20px auto 0;
+            opacity: 0.5;
+        }
+
+        /* ===========================
+           모바일 최적화 (추가 조정)
+        =========================== */
+        @media (max-width: 360px) {
+            .nav-btn {
+                font-size: 13px;
+                padding: 14px 8px;
+            }
+
+            .candidate-name {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+
+        /* 큰 화면에서는 최대 너비 제한 */
+        @media (min-width: 768px) {
+            .header,
+            .nav-buttons,
+            .section,
+            .footer {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .section {
+                margin-top: 24px;
+                margin-bottom: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===========================
+         Header (프로필 영역)
+    =========================== -->
+    <header class="header">
+        <div class="profile-image">
+            <img src="images/profile.jpg" alt="차승희 후보 프로필 사진">
+        </div>
+        <h1 class="candidate-name">차승희</h1>
+        <p class="candidate-region">서울 동대문구</p>
+        <p class="candidate-slogan">"복잡한 행정을, 주민에게 쉬운 말로."</p>
+    </header>
+
+    <!-- ===========================
+         Navigation (상단 버튼)
+    =========================== -->
+    <nav class="nav-buttons">
+        <a href="#promises" class="nav-btn">공약</a>
+        <a href="#profile" class="nav-btn">이력</a>
+        <a href="#media" class="nav-btn">언론·활동</a>
+        <a href="#sns" class="nav-btn">SNS</a>
+    </nav>
+
+    <!-- ===========================
+         섹션 ① 공약
+    =========================== -->
+    <section id="promises" class="section">
+        <h2 class="section-title">핵심 공약</h2>
+        
+        <div class="promise-item">
+            <div class="promise-title">🏘️ 주민 소통 플랫폼 구축</div>
+            <div class="promise-desc">
+                구청 앱 하나로 민원부터 생활정보까지, 주민이 편하게 접근할 수 있는 디지털 창구를 만들겠습니다.
+            </div>
+        </div>
+
+        <div class="promise-item">
+            <div class="promise-title">🌳 생활 SOC 확충</div>
+            <div class="promise-desc">
+                동네마다 걸어서 10분 거리에 공원, 도서관, 체육시설을 갖춘 생활권을 조성하겠습니다.
+            </div>
+        </div>
+
+        <div class="promise-item">
+            <div class="promise-title">👶 청년·육아 지원 강화</div>
+            <div class="promise-desc">
+                청년 주거비 지원과 0세부터 믿고 맡길 수 있는 공공 어린이집 확대로 실질적 도움을 드리겠습니다.
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         섹션 ② 이력
+    =========================== -->
+    <section id="profile" class="section">
+        <h2 class="section-title">후보자 이력</h2>
+        
+        <div class="profile-statement">
+            <p>✔️ 15년간 지역 주민과 함께 호흡하며 현장 중심의 정책을 만들어왔습니다.</p>
+            <p>✔️ 공공 행정과 민간 협업 경험을 바탕으로 실행 가능한 공약을 제시합니다.</p>
+            <p>✔️ 주민참여예산제, 마을공동체 사업 등 풀뿌리 민주주의를 실천해왔습니다.</p>
+        </div>
+
+        <div class="keywords">
+            <span class="keyword-tag"># 현장경험</span>
+            <span class="keyword-tag"># 소통</span>
+            <span class="keyword-tag"># 실행력</span>
+            <span class="keyword-tag"># 주민중심</span>
+            <span class="keyword-tag"># 투명성</span>
+        </div>
+    </section>
+
+    <!-- ===========================
+         섹션 ③ 언론·활동
+    =========================== -->
+    <section id="media" class="section">
+        <h2 class="section-title">언론 및 주요 활동</h2>
+        
+        <div class="media-item">
+            <div class="media-title">
+                📰 "주민과의 약속, 반드시 지키겠다" - 동대문구 주민간담회 개최
+            </div>
+        </div>
+
+        <div class="media-item">
+            <div class="media-title">
+                📺 지역 방송 '우리동네 희망찾기' 출연 - 청년·복지정책 제안
+            </div>
+        </div>
+
+        <div class="media-item">
+            <div class="media-title">
+                📄 지역신문 기고 "행정은 주민의 언어로 말해야 한다"
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         섹션 ④ SNS
+    =========================== -->
+    <section id="sns" class="section">
+        <h2 class="section-title">SNS에서 더 보기</h2>
+        
+        <div class="sns-container">
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="sns-link">
+                <span class="sns-icon">▶️</span>
+                <span>유튜브에서 정책 영상 보기</span>
+            </a>
+
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="sns-link">
+                <span class="sns-icon">📷</span>
+                <span>인스타그램 활동 소식</span>
+            </a>
+
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="sns-link">
+                <span class="sns-icon">👍</span>
+                <span>페이스북 공식 페이지</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===========================
+         Footer (하단)
+    =========================== -->
+    <footer class="footer">
+        <p class="footer-message">
+            QR을 저장해 두시면<br>
+            언제든 후보 정보를 확인할 수 있습니다.
+        </p>
+        <div class="footer-divider"></div>
+    </footer>
+
+</body>
+</html>
